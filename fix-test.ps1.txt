@@ -1,0 +1,63 @@
+
+$path = "src/App.tsx"
+
+if (!(Test-Path $path)) {
+    Write-Host "HIBA: src/App.tsx nem található."
+    exit 1
+}
+
+$backup = "src/App-before-encoding-fix.tsx"
+Copy-Item $path $backup -Force
+
+$content = [System.IO.File]::ReadAllText(
+    (Resolve-Path $path).Path,
+    [System.Text.Encoding]::UTF8
+)
+
+$replacements = [ordered]@{
+    'Ă‰' = 'É'
+    'Ă' = 'Á'
+    'Ăˇ' = 'á'
+    'Ă©' = 'é'
+    'Ă¶' = 'ö'
+    'ĂĽ' = 'ü'
+    'Ăł' = 'ó'
+    'Ă­' = 'í'
+    'Ă“' = 'Ó'
+    'Ăś' = 'Ü'
+    'Ĺ‘' = 'ő'
+    'Ĺ' = 'Ő'
+    'Ĺ±' = 'ű'
+    'Ĺ±' = 'ű'
+    'Ă±' = 'ű'
+    'Ă‰' = 'É'
+    'â†' = '↘'
+    'â†—' = '↗'
+    'â†‘' = '↑'
+    'âśł' = '✳'
+    'â€”' = '—'
+    'â€“' = '–'
+    'â’' = '−'
+    'â™Ş' = '♪'
+    'â–¶' = '▶'
+    'Â©' = '©'
+}
+
+foreach ($key in $replacements.Keys) {
+    $content = $content.Replace($key, $replacements[$key])
+}
+
+$content = $content.Replace("káosz.Egy", "káosz. Egy")
+$content = $content.Replace("világ.Egy", "világ. Egy")
+$content = $content.Replace("lüktetésével.Nem", "lüktetésével. Nem")
+$content = $content.Replace("semmibe.Saját", "semmibe. Saját")
+$content = $content.Replace("mást ? Írj", "mást? Írj")
+
+[System.IO.File]::WriteAllText(
+    (Resolve-Path $path).Path,
+    $content,
+    [System.Text.UTF8Encoding]::new($true)
+)
+
+Write-Host "A javitas lefutott."
+Write-Host "Biztonsagi masolat: $backup"

@@ -1,0 +1,383 @@
+
+import { useState } from "react";
+import "./index.css";
+
+const members = [
+    {
+        number: "01",
+        name: "FRONTEMBER",
+        role: "Ének / Rap",
+        image:
+            "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=900&q=85",
+    },
+    {
+        number: "02",
+        name: "GITÁROS",
+        role: "Gitár",
+        image:
+            "https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?auto=format&fit=crop&w=900&q=85",
+    },
+    {
+        number: "03",
+        name: "DJ",
+        role: "DJ / Elektronika",
+        image:
+            "https://images.unsplash.com/photo-1571266028243-d220c9c3b7f8?auto=format&fit=crop&w=900&q=85",
+    },
+];
+
+const tracks = [
+    { number: "01", title: "KISHÁZ", note: "SAJÁT ZENE" },
+    { number: "02", title: "NINCS CSEND", note: "SAJÁT ZENE" },
+    { number: "03", title: "SAJÁT SZABÁLYOK", note: "SAJÁT ZENE" },
+];
+
+const platforms = [
+    { name: "Spotify", symbol: "S" },
+    { name: "Apple Music", symbol: "♪" },
+    { name: "YouTube", symbol: "▶" },
+];
+
+const socials = [
+    { name: "Instagram", symbol: "IG" },
+    { name: "TikTok", symbol: "TK" },
+];
+
+function App() {
+    const [menuOpen, setMenuOpen] = useState(false);
+
+    const closeMenu = () => setMenuOpen(false);
+
+    return (
+        <>
+        <header className= "site-header" >
+        <a className="logo" href = "#home" onClick = { closeMenu } >
+            KISHÁZ<span>.</span>
+            </a>
+
+            < button
+    className = "menu-toggle"
+    type = "button"
+    aria - label={ menuOpen ? "Menü bezárása" : "Menü megnyitása" }
+    aria - expanded={ menuOpen }
+    onClick = {() => setMenuOpen(!menuOpen)
+}
+        >
+{ menuOpen? "✕": "☰" }
+    </button>
+
+    < nav
+className = {`navigation ${menuOpen ? "navigation-open" : ""}`}
+aria - label="Fő navigáció"
+    >
+    <a href="#about" onClick = { closeMenu } > RÓLUNK </a>
+        < a href = "#members" onClick = { closeMenu } > TAGOK </a>
+            < a href = "#music" onClick = { closeMenu } > ZENÉK </a>
+                < a href = "#concerts" onClick = { closeMenu } > KONCERTEK </a>
+                    < a href = "#contact" onClick = { closeMenu } > KAPCSOLAT </a>
+                        </nav>
+                        </header>
+
+                        < main >
+                        <section className="hero" id = "home" >
+                            <div className="hero-overlay" />
+
+                                <div className="hero-content" >
+                                    <p className="hero-eyebrow" > NEM FÉRÜNK A KERETEK KÖZÉ.</p>
+
+                                        <h1>
+              EZ ITT A
+    < br />
+    <span>KISHÁZ.</span>
+    </h1>
+
+    < p className = "hero-description" >
+        Három arc.Egy közös hang.Saját szabályok.
+            </p>
+
+            < div className = "hero-actions" >
+                <a className="button-primary" href = "#music" >
+                    HALLGASS BELE<span>↗</span>
+                        </a>
+                        < a className = "button-outline" href = "#concerts" >
+                            KONCERTEK
+                            </a>
+                            </div>
+                            </div>
+
+                            < div className = "hero-bottom" >
+                                <span>FÜGGETLEN HANGZÁS / BUDAPEST </span>
+                                    < span > ALAPÍTVA: KISHÁZ </span>
+                                        </div>
+
+                                        < div className = "hero-sticker" aria - hidden="true" >
+                                            NEM
+                                            < br />
+                                            ALKUSZUNK
+                                            <span>✳</span>
+                                                </div>
+                                                </section>
+
+                                                < div className = "ticker" aria - label="Kisház" >
+                                                    <div className="ticker-track" >
+                                                    {
+                                                        Array.from({ length: 8 }, (_, index) => (
+                                                            <span className= "ticker-item" key = { index } >
+                                                            KISHÁZ < span className = "ticker-star" >✳</span> SAJÁT SZABÁLYOK
+                                                        </span>
+                                                        ))
+                                                    }
+                                                        </div>
+                                                        </div>
+
+                                                        < section className = "section about-section" id = "about" >
+                                                            <div className="section-label" >
+                                                                <span>01 / RÓLUNK </span>
+                                                                < span > AMI BELÜLRŐL JÖN </span>
+                                                                    </div>
+
+                                                                    < div className = "about-grid" >
+                                                                        <h2 className="about-heading" >
+                                                                            NEM EGY
+                                                                                < br />
+                                                                                <span>DOBOZBA </span>
+                                                                                < br />
+                                                                                VALÓK
+              <span>.</span>
+                                                                                </h2>
+
+                                                                                < div className = "about-copy" >
+                                                                                    <p className="about-lead" >
+                                                                                        A Kisház három külön világból épít egy közöset.
+              </p>
+                                                                                            <p>
+Rap, gitár és elektronikus hangzás találkozik nálunk.
+                Nem akarunk megfelelni egyetlen műfajnak sem: azt
+csináljuk, ami nekünk működik.
+              </p>
+    < a className = "text-link" href = "#members" >
+        ISMERD MEG A CSAPATOT<span>↘</span>
+            </a>
+            </div>
+            </div>
+            </section>
+
+            < section className = "photo-section" aria - label="Kisház hangulatképek" >
+                <div className="photo-card photo-card-large" >
+                    <img
+              src="https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=1400&q=85"
+alt = "Koncert közönsége a színpad előtt"
+loading = "lazy"
+    />
+    <span className="photo-caption" > ÉLŐBEN MÁS </span>
+        </div>
+
+        < div className = "photo-card photo-card-small" >
+            <img
+              src="https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?auto=format&fit=crop&w=900&q=85"
+alt = "Élőzenei koncert"
+loading = "lazy"
+    />
+    <span className="photo-caption" > HANGOSABBAN </span>
+        </div>
+
+        < div className = "photo-note" >
+            <span className="photo-note-symbol" >✳</span>
+                <p>
+              NEM CSAK
+    < br />
+    HÁTTÉRZENE.
+            </p>
+    </div>
+    </section>
+
+    < section className = "section members-section" id = "members" >
+        <div className="section-label" >
+            <span>02 / A TAGOK </span>
+                < span > HÁROM KÜLÖN VILÁG </span>
+                    </div>
+
+                    < div className = "section-heading-row" >
+                        <h2>
+                        EZEK
+                        < br />
+                        <span>MI VAGYUNK.</span>
+                            </h2>
+                            <p>
+              Három külön karakter, egy közös projekt.
+              A Kisház minden tagja hozzáteszi a saját hangját.
+            </p>
+    </div>
+
+    < div className = "members-grid" >
+    {
+        members.map((member) => (
+            <article className= "member-card" key = { member.number } >
+            <div className="member-image" >
+        <img src={ member.image } alt = { member.name } loading = "lazy" />
+        <span className="member-number" > { member.number } </span>
+        </div>
+
+        < div className = "member-info" >
+        <div>
+        <h3>{ member.name } </h3>
+        < p className = "member-role" > { member.role } </p>
+        </div>
+        < span className = "member-arrow" aria - hidden="true" >↗</span>
+        </div>
+        </article>
+        ))
+    }
+        </div>
+        </section>
+
+        < section className = "section music-section" id = "music" >
+            <div className="section-label" >
+                <span>03 / ZENE </span>
+                < span > HALLGASD MEG </span>
+                    </div>
+
+                    < div className = "music-heading" >
+                        <h2>
+                        NE CSAK
+                            < br />
+                            <span>OLVASD.</span>
+                            </h2>
+                            < p > A zene mondja el a többit.</p>
+                                </div>
+
+                                < div className = "track-list" >
+                                {
+                                    tracks.map((track) => (
+                                        <div className= "track-row" key = { track.number } >
+                                        <span className="track-number" > { track.number } </span>
+                                    < div className = "track-details" >
+                                    <h3>{ track.title } </h3>
+                                    < span > { track.note } </span>
+                                    </div>
+                                    < span className = "track-status" > LINK HAMAROSAN </span>
+                                    < span className = "track-arrow" aria - hidden="true" >↗</span>
+                                    </div>
+                                    ))
+                                }
+                                    </div>
+
+                                    < div className = "platform-block" >
+                                        <h3>KERESS MINKET A ZENÉID KÖZÖTT.</h3>
+                                            <p>
+              A platformlinkeket akkor aktiváljuk, amikor megvannak a
+              Kisház hivatalos előadói oldalai.
+            </p>
+
+    < div className = "platform-grid" >
+    {
+        platforms.map((platform) => (
+            <div
+                  className= "platform-link platform-link-placeholder"
+                  key = { platform.name }
+                  aria - label={`${platform.name} – link később`}
+        >
+        <span className="platform-symbol" > { platform.symbol } </span>
+            < span className = "platform-name" > { platform.name } </span>
+                < span className = "platform-coming-soon" > HAMAROSAN </span>
+                    </div>
+              ))}
+</div>
+    </div>
+    </section>
+
+    < section className = "section concerts-section" id = "concerts" >
+        <div className="section-label" >
+            <span>04 / KONCERTEK </span>
+            < span > TALÁLKOZUNK A SZÍNPAD ELŐTT </span>
+                </div>
+
+                < div className = "concerts-content" >
+                    <span className="concerts-symbol" aria - hidden="true" >✳</span>
+                        < p className = "concerts-eyebrow" > KÖVETKEZŐ ÁLLOMÁS </p>
+                            <h2>
+HAMAROSAN
+    < br />
+    <span>TALÁLKOZUNK.</span>
+    </h2>
+    < p className = "concerts-description" >
+        Jelenleg nincs meghirdetett koncertünk.Kövesd a Kisházat,
+            hogy ne maradj le a következő fellépésről.
+            </p>
+                < a className = "button-primary" href = "#contact" >
+                    KAPCSOLAT<span>↗</span>
+                        </a>
+                        </div>
+
+                        < div className = "concerts-bottom" >
+                            <span>ÚJ DÁTUMOK HAMAROSAN </span>
+                                < span > FIGYELD A FRISSÍTÉSEKET </span>
+                                    </div>
+                                    </section>
+
+                                    < section className = "section contact-section" id = "contact" >
+                                        <div className="section-label" >
+                                            <span>05 / KAPCSOLAT </span>
+                                            < span > VAN EGY ÖTLETED ? </span>
+                                                </div>
+
+                                                < div className = "contact-content" >
+                                                    <h2>
+                                                    BESZÉLJÜNK
+                                                    < br />
+                                                    <span>RÓLA.</span>
+                                                    </h2>
+                                                    <p>
+Koncert, együttműködés vagy bármi más ? Írj nekünk.
+            </p>
+    < a className = "contact-email" href = "mailto:hello@kishaz.hu" >
+        HELLO@KISHAZ.HU<span>↗</span>
+            </a>
+            </div>
+
+            < div className = "social-block" >
+                <h3>KÖVESS MINKET </h3>
+                    < div className = "social-links" >
+                    {
+                        socials.map((social) => (
+                            <div
+                  className= "social-link social-link-placeholder"
+                  key = { social.name }
+                  aria - label={`${social.name} – link később`}
+                        >
+                        <span className="social-symbol" > { social.symbol } </span>
+                            < span > { social.name } </span>
+                            < span className = "social-coming-soon" > HAMAROSAN </span>
+                                </div>
+              ))}
+</div>
+    </div>
+    </section>
+    </main>
+
+    < footer className = "site-footer" >
+        <a className="footer-brand" href = "#home" >
+            KISHÁZ<span>.</span>
+            </a>
+
+            < div className = "footer-platforms" aria - label="Zenei platformok" >
+            {
+                platforms.map((platform) => (
+                    <span key= { platform.name } > { platform.name } </span>
+                ))
+            }
+                </div>
+
+                < span className = "footer-copy" >
+          © { new Date().getFullYear() } KISHÁZ.MINDEN JOG FENNTARTVA.
+        </span>
+
+    < a className = "back-to-top" href = "#home" aria - label="Vissza a tetejére" >
+          ↑
+</a>
+    </footer>
+    </>
+  );
+}
+
+export default App;
